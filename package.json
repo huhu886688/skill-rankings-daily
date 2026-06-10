@@ -1,0 +1,15 @@
+{
+  "name": "skill-rankings-daily",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-skill-daily.mjs",
+    "sync:data": "node scripts/sync-skill-data.mjs",
+    "validate": "node scripts/validate-skill-daily.mjs",
+    "build": "npm run validate"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
