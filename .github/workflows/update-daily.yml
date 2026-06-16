@@ -1,0 +1,43 @@
+name: Update daily Skill rankings
+
+on:
+  schedule:
+    # 16:00 UTC = 00:00 Beijing time on the next calendar day.
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Generate daily ranking data
+        run: npm run generate
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Validate static data
+        run: npm run validate
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/skill-daily.json data/skill-daily.js
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Update daily Skill ranking data"
+            git push
+          fi

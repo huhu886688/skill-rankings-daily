@@ -125,6 +125,11 @@ const SECTION_EN = {
     shortTitle: "Monthly Growth",
     subtitle: "Measures 30-day growth, recent updates, directory heat, discussion frequency, and scenario clarity."
   },
+  finance: {
+    title: "Finance & Investing Top 5",
+    shortTitle: "Finance & Investing",
+    subtitle: "Ranks investing skills by research depth, valuation rigor, risk control, market context, and decision support."
+  },
   data: {
     title: "Data Analysis Top 5",
     shortTitle: "Data Analysis",
@@ -159,6 +164,10 @@ const KIND_EN = {
   "生态入口": "Ecosystem gateway",
   "设计交付": "Design delivery",
   "开发编程": "Development",
+  "金融投资": "Finance & investing",
+  "风控审查": "Risk review",
+  "宏观策略": "Macro strategy",
+  "财务分析": "Financial analysis",
   "办公交付": "Office delivery",
   "数据分析": "Data analysis",
   "官方共享": "Official shared",
@@ -500,6 +509,7 @@ function sourceUrl(item) {
     "vercel-labs/skills": "https://github.com/vercel-labs/skills/tree/main/skills/find-skills",
     "openai/skills": repoCodeSearchUrl("openai/skills", item),
     "gp7418/guizang-ppt": "https://github.com/op7418/guizang-ppt-skill",
+    "op7418/guizang-ppt-skill": "https://github.com/op7418/guizang-ppt-skill",
     "Copilot9/awesome-codex-skills": "https://github.com/search?q=awesome-codex-skills&type=repositories",
     "heilcheng/awesome-agent-skills": "https://github.com/heilcheng/awesome-agent-skills",
     "Agents365-ai/drawio-skill": "https://github.com/Agents365-ai/drawio-skill",
@@ -533,6 +543,7 @@ function iconSvg(kind = "star") {
 function iconFor(item) {
   const text = `${item.name} ${item.englishName}`;
   if (text.includes("找技能") || text.includes("Find")) return "search";
+  if (text.includes("投资") || text.includes("估值") || text.includes("宏观") || text.includes("财报") || text.includes("风险")) return "trend";
   if (text.includes("表格") || text.includes("数据") || text.includes("SEO") || text.includes("云成本")) return "trend";
   if (text.includes("前端") || text.includes("图像") || text.includes("Remotion") || text.includes("UI") || text.includes("网页")) return "palette";
   if (text.includes("文档") || text.includes("PDF") || text.includes("会议") || text.includes("演示") || text.includes("需求")) return "doc";
